@@ -1,5 +1,5 @@
 
-function GeneraForm(){
+/*function GeneraForm(){
 
     let formulario=document.createElement("form");
 
@@ -59,4 +59,40 @@ function GeneraForm(){
         formulario.appendChild(cajaTextMensaje);
         formulario.appendChild(boton);
         document.getElementById('ContentFormulario').appendChild(formulario);
-}
+}*/
+
+const { createApp } = Vue
+createApp({
+    
+    data() {
+
+        return {
+            errors: [],
+            nya: null,
+            email: null,
+            asunto: null,
+            mensaje: null,
+        }
+    },
+    methods: {
+        validarFormulario: function (e) {
+            if (this.nya && this.email && this.asunto  !== null && this.mensaje) {
+                return true;
+            }
+            this.errors = [];
+            if (!this.nya) {
+                this.errors.push('Por favor, ingresa tu Nombre y Apellido.');
+              }
+              if (!this.email) {
+                this.errors.push('Por favor, ingresa tu Email.');
+              }
+              if (!this.asunto) {
+                this.errors.push('Por favor, ingresa un Asunto.');
+              }
+              if (!this.mensaje) {
+                this.errors.push('Por favor, ingresa tu Mensaje.');
+              }
+              e.preventDefault();
+        }}
+    }
+    ).mount('#app')
